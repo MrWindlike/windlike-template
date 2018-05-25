@@ -1,0 +1,30 @@
+const path = require('path');
+
+export default {
+  "proxy": {
+    "/admin": {
+      "target": "",
+      "changeOrigin": true
+    }
+  },
+  "entry": "src/index.js",
+  alias: {
+    Components: path.resolve(__dirname, 'src/components/'),
+    Utils: path.resolve(__dirname, 'src/utils/'),
+    Assets: path.resolve(__dirname, 'src/assets/'),
+  },
+  "env": {
+    "development": {
+      "extraBabelPlugins": [
+        "dva-hmr",
+        [ "import", { "libraryName": "antd", "style": "css" } ]
+      ]
+    },
+    "production": {
+      "extraBabelPlugins": [
+        "transform-runtime",
+        [ "import", { "libraryName": "antd", "style": "css" } ]
+      ]
+    }
+  }
+}
