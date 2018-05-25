@@ -12,7 +12,7 @@ export default function createServices(services) {
             method: service.method,
             headers: service.headers || {},
           });
-        }
+        };
       } else {
         const headers = service.headers ? ({
             'Content-Type': 'application/json;charset=utf-8',

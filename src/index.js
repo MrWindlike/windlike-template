@@ -12,7 +12,7 @@ const app = dva({
 Component.shouldComponentUpdate = (nextProps, nextState) => {
   return !(this.props === nextProps || is(this.props, nextProps)) ||
          !(this.state === nextState || is(this.state, nextState));
-}
+};
 
 // 2. Plugins
 // app.use({});
@@ -25,3 +25,5 @@ app.router(require('./router').default);
 
 // 5. Start
 app.start('#root');
+
+export default app;

@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
 
-/**
- * 
- * 
- */
-
 function handleComponentsCreator({
     connect,
     initState = {},
@@ -14,8 +9,8 @@ function handleComponentsCreator({
     afterCatch = ()=> {}
 } = {}) {
 
-    if(connect === undefined) {
-        throw new Error(`\n请传入connect函数!\nPlease give a connect function!`);
+    if(typeof connect !== 'function') {
+        throw new Error('\n请传入connect函数!\nPlease give a connect function!');
     }
 
     function withHandle(mapStateToProps, WrappedComponent, actionType) {
@@ -45,7 +40,7 @@ function handleComponentsCreator({
                         ...this.state,
                         ...payload
                     }
-                })
+                });
             }
 
             setUrl(newParams, isReplaced) {
@@ -86,7 +81,7 @@ function handleComponentsCreator({
                         {...this.state}
                         {...this.props} />;
             }
-        };
+        }
 
         WithHandle.displayName = `WithHandle(${getDisplayName(WrappedComponent)})`;
 

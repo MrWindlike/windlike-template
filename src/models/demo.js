@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 import modelsCreator from 'Utils/models';
-import demoServices from '../services/demo'
+import demoServices from '../services/demo';
 
 export default modelsCreator({
 

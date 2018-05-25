@@ -11,18 +11,24 @@ const initRoute = MENUS[0].links && MENUS[0].links.length ? `${MENUS[0].link}/${
 
 function RouterConfig({ history }) {
   return (
-    <LocaleProvider locale={ zh_CN }>
-      <Router history={ history }>
-        <Layout style={ { minHeight: '100vh' } }>
+    <LocaleProvider locale={zh_CN}>
+      <Router history={history}>
+        <Layout style={{ minHeight: '100vh' }}>
           <Sider>
             <Switch>
-              {/* Menu */ }
-              <Route path="/:menu/:subMenu" render={ (props) => <MenuList { ...props } subMenus={ MENUS }></MenuList> }></Route>
-              <Route render={ () => <Redirect to={initRoute} /> }></Route>
+              {/* Menu */}
+              <Route
+                path="/:menu/:subMenu"
+                render={(props) => <MenuList {...props} subMenus={MENUS} />}
+              />
+              <Route render={() => <Redirect to={initRoute} />}></Route>
             </Switch>
           </Sider>
-          {/* Content */ }
-          <Route path="/:menu/:subMenu" render={ (props) => <Content { ...props } subMenus={ MENUS }></Content> }></Route>
+          {/* Content */}
+          <Route
+            path="/:menu/:subMenu"
+            render={(props) => <Content {...props} subMenus={MENUS} />}
+          />
         </Layout>
       </Router>
     </LocaleProvider >

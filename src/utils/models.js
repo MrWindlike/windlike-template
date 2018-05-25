@@ -23,7 +23,7 @@ export default function createModels(model) {
         }
 
         return data.code;
-      }
+      };
     } else {
       return effect;
     }
