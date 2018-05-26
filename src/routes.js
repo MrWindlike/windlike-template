@@ -1,10 +1,10 @@
-import dynamic from 'dva/dynamic';
-import app from './index';
+import routesCreator from 'Utils/routes';
 
-export const IndexPage = dynamic({
-  app,
-  models: () => [
-    import('./models/demo'),
-  ],
-  component: () => import('./routes/IndexPage'),
-});
+export default routesCreator([
+  {
+    name: '首页',
+    path: '/default-menu/default',
+    models: [import('./models/demo')],
+    component: import('./routes/IndexPage'),
+  },
+]);

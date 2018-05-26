@@ -14,7 +14,12 @@
     "semi": "error",
     "quotes": [ "error", "single"],
     "no-console": "off",
-    "global-require": "off"
+    "global-require": "off",
+    "newline-after-var": "error",
+    "newline-before-return": "error",
+    "no-use-before-define": "error",
+    "jsx-quotes": "error",
+    "array-callback-return": "off"
   },
   "globals": {
     "require": true
