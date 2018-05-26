@@ -1,5 +1,5 @@
 import dva from 'dva';
-import './index.css';
+import './index.less';
 import browserHistory from 'history/createBrowserHistory';
 import { Component } from 'react';
 import { is } from 'immutable';
@@ -24,6 +24,8 @@ const client = new ApolloClient({
   link: new HttpLink(),
   cache: new InMemoryCache(),
 });
+
+export default app;
 
 // 2. Plugins
 // app.use({});

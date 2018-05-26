@@ -7,13 +7,9 @@ export default modelsCreator({
   namespace: 'demo',
 
   state: {
-    oneState: fromJS({}),
-  },
-
-  subscriptions: {
-    setup({ dispatch, history }) {
-
-    },
+    oneState: fromJS({
+      value: 'Hello Windlike',
+    }),
   },
 
   effects: {

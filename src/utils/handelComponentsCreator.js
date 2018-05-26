@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 
+function getDisplayName(WrappedComponent) {
+    return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+}
+
 function handleComponentsCreator({
+    /** redux connect函数 */
     connect,
+    /** 初始state */
     initState = {},
+    /** 是否在组件Mount完成后立刻获取数据 */
     isFetchAfterMount = true,
-    isChangeUrl = false,
+    /** 获取数据后的回调 */
     afterFetch = ()=> {},
+    /** 获取数据出错回调 */
     afterCatch = ()=> {}
 } = {}) {
 
@@ -31,7 +39,16 @@ function handleComponentsCreator({
                 }
             }
 
-            fetchData(payload = {}, type) {
+            UNSAFE_componentWillUpdate(nextProps) {
+                if(nextProps.location !== this.props.location) {
+                    const { state } = this.props.location;
+
+                    this.setState(state);
+                    this.fetchData(state);
+                }
+            }
+
+            fetchData(payload = {}, type = '') {
                 this.setState({loading: true});
 
                 this.props.dispatch({
@@ -44,32 +61,22 @@ function handleComponentsCreator({
             }
 
             setUrl(newParams, isReplaced) {
-                const params = net.parseParams(this.props.location.search);
-                const finalParams = { ...params, ...newParams };
-    
-                let url = `${this.props.location.pathname}?`;
-    
-                for(let key in finalParams) {
-                    url += `${key}=${finalParams[key]}&`;
-                }
-    
                 if(isReplaced) {
-                    this.props.history.replace(url);
+                    this.props.history.replace({
+                        path: this.props.location.pathname,
+                        state: newParams,
+                    });
                 } else {
-                    this.props.history.push(url);
+                    this.props.history.push({
+                        path: this.props.location.pathname,
+                        state: newParams,
+                    });
                 }
                 
             }
 
             handleAnythings(state, type) {
-                if(isChangeUrl) {
-                    this.setUrl(state);
-                } else {
-                    this.setState(state);
-
-                    this.fetchData(state, type);
-                }
-                
+                this.setUrl(state);
             }
 
             render() {
@@ -90,10 +97,6 @@ function handleComponentsCreator({
 
     return withHandle;
 
-}
-
-function getDisplayName(WrappedComponent) {
-    return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 }
 
 export default handleComponentsCreator;

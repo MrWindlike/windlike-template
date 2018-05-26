@@ -1,0 +1,32 @@
+/// <reference types="react" />
+import * as React from 'react';
+import { ModalProps } from 'antd';
+
+interface WindlikeModalProps extends ModalProps {
+  /** 模态框打开处理函数 */
+  handleOpen?: () => void,
+  /** 模态框关闭处理函数 */
+  handleClose?: () => void,
+}
+
+export default class WindlikeModal extends React.Component<WindlikeModalProps, {}> {
+  static defaultProps: {
+    prefixCls: string;
+    width: number;
+    transitionName: string;
+    maskTransitionName: string;
+    confirmLoading: boolean;
+    visible: boolean;
+    okType: ButtonType;
+  };
+
+  static propTypes: {
+    handleOpen: () => void,
+    handleClose: () => void,
+  };
+
+  componentDidMount: ()=> void;
+  UNSAFE_componentWillUpdate(nextProps: object): void;
+  handleVisibleChange: ()=> void;
+  render(): JSX.Element;
+}
