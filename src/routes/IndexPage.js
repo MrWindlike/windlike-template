@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'dva';
+import PropTypes from 'prop-types';
 import styles from './IndexPage.css';
 
-function IndexPage() {
+function IndexPage(props) {
   return (
     <div className={styles.normal}>
-      <h1 className={styles.title}>Yay! Welcome to dva!</h1>
+      <h1 className={styles.title}>{props.oneState.get('value')}</h1>
       <div className={styles.welcome} />
       <ul className={styles.list}>
         <li>To get started, edit <code>src/index.js</code> and save to reload.</li>
@@ -16,6 +17,7 @@ function IndexPage() {
 }
 
 IndexPage.propTypes = {
+  oneState: PropTypes.object.isRequired,
 };
 
-export default connect()(IndexPage);
+export default connect(_ => ({ oneState: _.demo.oneState }))(IndexPage);

@@ -8,11 +8,12 @@ export default {
     }
   },
   "entry": "src/index.js",
-  alias: {
+  "alias": {
     Components: path.resolve(__dirname, 'src/components/'),
     Utils: path.resolve(__dirname, 'src/utils/'),
     Assets: path.resolve(__dirname, 'src/assets/'),
   },
+  "publicPath": "/",
   "env": {
     "development": {
       "extraBabelPlugins": [
@@ -22,7 +23,6 @@ export default {
     },
     "production": {
       "extraBabelPlugins": [
-        "transform-runtime",
         [ "import", { "libraryName": "antd", "style": "css" } ]
       ]
     }
