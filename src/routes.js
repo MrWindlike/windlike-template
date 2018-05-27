@@ -7,4 +7,10 @@ export default routesCreator([
     models: [import('./models/demo')],
     component: import('./routes/IndexPage'),
   },
+  {
+    name: '关于',
+    path: '/menu/submenu',
+    models: [import('./models/demo')],
+    component: import('./routes/IndexPage'),
+  },
 ]);

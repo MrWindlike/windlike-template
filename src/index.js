@@ -1,6 +1,7 @@
 import dva from 'dva';
 import './index.less';
 import browserHistory from 'history/createBrowserHistory';
+import 'ant-design-pro/dist/ant-design-pro.css';
 import { Component } from 'react';
 import { is } from 'immutable';
 

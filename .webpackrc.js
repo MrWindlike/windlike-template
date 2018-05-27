@@ -22,6 +22,7 @@ export default {
       ]
     },
     "production": {
+      "hash": true,
       "extraBabelPlugins": [
         [ "import", { "libraryName": "antd", "style": "css" } ]
       ]

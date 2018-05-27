@@ -1,0 +1,48 @@
+@import '../../media.less';
+
+.logo-front {
+  display: flex;
+  height: 2rem;
+  margin: 1rem 0;
+}
+
+.logo-back {
+  background: #002140;
+  display: flex;
+  justify-content: center;
+  height: 64px;
+  padding: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.logo-pure {
+  vertical-align: top;
+  width: 100%;
+  height: 2rem;
+}
+
+.logo-icon {
+  vertical-align: top;
+  width: 2rem;
+  height: 2rem;
+}
+
+.logo-name {
+  vertical-align: top;
+  font-weight: bold;
+  font-size: 20px;
+  color: #000;
+  text-decoration-line: none;
+  overflow: hidden;
+}
+
+.logo-name-back {
+  color: #fff;
+}
+
+@media @mobile {
+  .logo-name {
+    display: none;
+  }
+}
