@@ -3,9 +3,11 @@ import { Layout } from 'antd';
 import { Redirect, Route, Switch } from 'dva/router';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import styles from './BackLayout.less';
-import Content from './Content/Content';
-import MenuList from './MenuList/MenuList';
+import styles from './Layout.less';
+import Logo from 'Components/Logo/Logo';
+import BackContent from '../Content/BackContent';
+import Menu from 'Components/Menu/MenuList';
+import icon from 'Assets/icon-back.png';
 
 const { Sider } = Layout;
 const initRoute = MENUS[0].links && MENUS[0].links.length ? `${MENUS[0].link}/${MENUS[0].links[0]}` : `${MENUS[0].link}/default`;
@@ -14,6 +16,15 @@ class BackLayout extends Component {
   static propTypes = {
     isCloseWhenOpenOther: PropTypes.bool, /** 当打开其他一级菜单时是否关闭当前菜单 */
     isCollapsible: PropTypes.bool,
+    logoIcon: PropTypes.string.isRequired,
+    logoName: PropTypes.string.isRequired,
+    infoNum: PropTypes.number.isRequired,
+  }
+
+  static defaultProps = {
+    logoIcon: icon,
+    logoName: 'Windlike',
+    infoNum: 0,
   }
 
   constructor(props) {
@@ -49,24 +60,28 @@ class BackLayout extends Component {
   }
 
   render() {
-    const { isCollapsible, isCloseWhenOpenOther } = this.props;
-    const { openKeys } = this.state;
+    const { isCollapsible, isCloseWhenOpenOther, logoIcon, logoName } = this.props;
+    const { openKeys, collapsed } = this.state;
 
     return (
-      <Layout style={{ minHeight: '100vh' }}>
+      <Layout className={styles.layout}>
         <Sider
           collapsed={this.state.collapsed}
           onCollapse={this.onCollapse}
           collapsible={isCollapsible}
         >
-          <div className={styles.logo} />
+          <Logo 
+          logoIcon={logoIcon} 
+          logoName={logoName} 
+          collapsed={collapsed}
+          />
           <Switch>
             {/* Menu */}
             <Route
               path="/:menu/:subMenu"
               render={
                 props => (
-                  <MenuList
+                  <Menu
                     subMenus={MENUS}
                     openKeys={openKeys}
                     onMenuOpenChange={this.onMenuOpenChange}
@@ -82,7 +97,7 @@ class BackLayout extends Component {
         {/* Content */}
         <Route
           path="/:menu/:subMenu"
-          render={props => <Content {...props} subMenus={MENUS} />}
+          render={props => <BackContent {...props} subMenus={MENUS} />}
         />
       </Layout>
     );

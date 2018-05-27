@@ -8,6 +8,7 @@ import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from 'react-apollo';
+import 'ant-design-pro/dist/ant-design-pro.css';
 
 // 1. Initialize
 const app = dva({

@@ -1,11 +1,11 @@
 const MENUS = [
   {
-    name: '一级菜单',
-    icon: 'profile',
+    name: '首页',
+    icon: 'home',
     link: 'default-menu',
   },
   {
-    name: '有子菜单的一级菜单',
+    name: '一级菜单',
     icon: 'profile',
     link: 'menu',
     menus: ['二级菜单'],

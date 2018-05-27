@@ -10,16 +10,6 @@ interface WindlikeModalProps extends ModalProps {
 }
 
 export default class WindlikeModal extends React.Component<WindlikeModalProps, {}> {
-  static defaultProps: {
-    prefixCls: string;
-    width: number;
-    transitionName: string;
-    maskTransitionName: string;
-    confirmLoading: boolean;
-    visible: boolean;
-    okType: ButtonType;
-  };
-
   static propTypes: {
     handleOpen: () => void,
     handleClose: () => void,
